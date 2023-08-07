@@ -20,13 +20,13 @@ app.post('/send-email', upload.single('pdf'), (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'emmanuel71711@gmail.com',
-      pass: 'Wealth1234',
+      user: "chatconnect101@gmail.com",
+      pass: 'aqctuxjjolcdgcvz',
     },
   });
 
   const mailOptions = {
-    from: 'emmanuel71711@gmail.com',
+    from: "chatconnect101@gmail.com",
     to: email,
     subject: 'PDF Report',
     text: 'Attached is the PDF report',
