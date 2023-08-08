@@ -17,16 +17,17 @@ app.post('/send-email', upload.single('pdf'), (req, res) => {
   const { email } = req.body;
   const pdfBuffer = req.file.buffer;
 
+  // Configure the email transporter (replace with your email service and credentials)
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: "chatconnect101@gmail.com",
-      pass: 'aqctuxjjolcdgcvz',
+        user: process.env.EMAIL_USERNAME, 
+        pass: process.env.EMAIL_PASSWORD, 
     },
   });
 
   const mailOptions = {
-    from: "chatconnect101@gmail.com",
+    from: 'emmanuel71711@gmail.com',
     to: email,
     subject: 'PDF Report',
     text: 'Attached is the PDF report',
@@ -38,7 +39,7 @@ app.post('/send-email', upload.single('pdf'), (req, res) => {
     ],
   };
 
-
+  // Send the email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log('Error occurred:', error);
@@ -50,7 +51,7 @@ app.post('/send-email', upload.single('pdf'), (req, res) => {
   });
 });
 
-
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
